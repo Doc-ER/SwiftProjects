@@ -177,3 +177,4 @@ if farmAnimals.isDisjoint(with: cityAnimals) {
     print("False")
 }
 
+//end on 2017-6-10
