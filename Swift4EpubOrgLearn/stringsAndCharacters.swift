@@ -90,3 +90,81 @@ welcome = "hello"
 welcome.insert("!", at:welcome.endIndex)
 print(welcome)
 
+welcome.insert(contentsOf: " there", at: welcome.index(before: welcome.endIndex))
+print(welcome)
+
+welcome.remove(at:welcome.index(before:welcome.endIndex))
+
+let range = welcome.index(welcome.endIndex, offsetBy: -6)..<welcome.endIndex
+welcome.removeSubrange(range)
+print(welcome)
+/*NOTE
+You can use the the insert(_:at:), insert(contentsOf:at:), remove(at:), and removeSubrange(_:) methods on 
+any type that conforms to the RangeReplaceableCollection protocol. 
+This includes String, as shown here, as well as collection types such as Array, Dictionary, and Set.*/
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Substrings
+let greetings = "Hello, world!"
+let indexx = greetings.index(of: ",") ?? greetings.endIndex
+let beginning = greetings[..<indexx]
+
+let newString = String(beginning)
+print(newString)
+
+
+//Comparing Strings
+/*swift provides 3 ways to compare textual values:
+1. string and character equality
+2. prefix equality
+3. suffix equality
+*/
+//1.String and Character Equality
+let quotation = "We're a lot alike, you and I."
+let sameQuotation = "We're a lot alike, you and I."
+if quotation == sameQuotation {
+    print("These two strings are considered equal")
+}
+
+//2.Prefix and Suffix Equality
+/*
+To check whether a string has a particular string prefix or suffix,
+call the string's hasPrefix(_:) and hasSuffix(_:) methods, both of which
+take a single argument of type String and return a Boolean value.
+*/
+/*
+The hasPrefix(_:) and hasSuffix(_:) member of String is bridged from NSString(and in so from Foundation).
+When working with Swift in Xcode Playgrounds and projects, this method is availabe from the Swift standard
+library, whereas when compiling Swift from e.g. the IBM sandbox/your local Linux machine, the Swift std-lib
+version is not accessible, whereas the one from core-libs Foundation is.
+
+To have access to the latter implementation, you need to explicitly import Foundation:,
+*/
+import Foundation
+let romeoAndJuliet = [
+    "Act 1 Scene 1: Verona, A public place",
+    "Act 1 Scene 2: Capulet's mansion",
+    "Act 1 Scene 3: A room in Capulet's mansion",
+    "Act 1 Scene 4: A street outside Capulet's mansion",
+    "Act 1 Scene 5: The Great Hall in Capulet's mansion",
+    "Act 2 Scene 1: Outside Capulet's mansion",
+    "Act 2 Scene 2: Capulet's orchard",
+    "Act 2 Scene 3: Outside Friar Lawrence's cell",
+    "Act 2 Scene 4: A street in Verona",
+    "Act 2 Scene 5: Capulet's mansion",
+    "Act 2 Scene 6: Friar Lawrence's cell"
+]
+
+var act1SceneCount = 0
+for scene in romeoAndJuliet {
+    if scene.hasPrefix("Act 1 "){
+        act1SceneCount += 1
+    }
+}
+print("There are \(act1SceneCount) scenes in Act 1")
+
+
